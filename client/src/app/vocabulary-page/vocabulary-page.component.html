@@ -9,9 +9,9 @@
     (takeWord)="onSearchWord($event)" (takeType)="changeOrderBy($event)" (delList)="deleteList()">
   </app-control-block>
 
-<div class="container-fluid">
+<div class="container-fluid margBot">
   <div *ngIf="words$ | async as words; else loader">
-    <table class="table table-hover table-bordered margBot" *ngIf="words.length; else empty">
+    <table class="table table-hover table-bordered" *ngIf="words.length; else empty">
       <tr *ngFor="let item of words | listFilter : searchWord : 'name' | appOrderBy : selectedType"
           [routerLink]="exportChoice ? null : ['/vocabulary', item._id]">
         <td *ngIf="exportChoice" class="mw-40">
