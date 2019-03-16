@@ -1,0 +1,101 @@
+<app-modal-for-delete
+  [wordToDelete]="form.get('name').value" (deleteThisWord)="deleteWord()">
+</app-modal-for-delete>
+
+<div class="container-fluid">
+  <h2 class="text-center">{{isNew ? 'Add new ' : 'Edit (/delete) '}}word</h2>
+  <div *ngIf="isNew" class="alert-info pt-3 pb-1">
+    <p class="text-center">
+      <a [href]="href + (form.get('name').value ? form.get('name').value:strDefault)" target="_blank" [title]="title">
+        Convenient resource
+      </a>
+      where you can learn the English or American pronunciation (transcription) of the word
+    </p>
+  </div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <table class="table table-responsive-md">
+      <tr>
+        <th class="text-center">Word</th>
+        <th class="text-center">Transcription</th>
+        <th class="text-center">Translation</th>
+      </tr>
+      <tr>
+        <td class="border-bottom text-center">
+          <div class="input-group">
+            <input
+              class="form-control text-center pl-0 pr-0"
+              placeholder=" new word"
+              formControlName="name"
+              id="name"
+              type="text"
+              [ngClass]="{'invalid': form.get('name').invalid && form.get('name').touched}"
+            >
+          </div>
+          <span class="text-danger helper-text"
+                *ngIf="form.get('name').invalid && form.get('name').touched">
+          <span *ngIf="form.get('name').errors['required']">Данное поле не может быть пустым</span>
+        </span>
+        </td>
+        <td class="border-bottom text-center">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">[</span>
+            </div>
+            <input type="text"
+                   class="form-control text-center pl-0 pr-0"
+                   placeholder="transcription"
+                   id="transcription"
+                   formControlName="transcription"
+                   [ngClass]="{'invalid': form.get('transcription').invalid&&form.get('transcription').touched}"
+            >
+            <div class="input-group-append">
+              <span class="input-group-text">]</span>
+            </div>
+          </div>
+          <span class="text-danger helper-text"
+                *ngIf="form.get('transcription').invalid&&form.get('transcription').touched">
+                  <span *ngIf="form.get('transcription').errors['required']">Данное поле не может быть пустым</span>
+          </span>
+        </td>
+        <td class="border-bottom text-center">
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control text-center pl-0 pr-0"
+              placeholder="translation"
+              id="translation"
+              formControlName="translation"
+              [ngClass]="{'invalid': form.get('translation').invalid&&form.get('translation').touched}"
+            >
+          </div>
+          <span class="text-danger helper-text"
+                *ngIf="form.get('translation').invalid&&form.get('translation').touched">
+                          <span
+                            *ngIf="form.get('translation').errors['required']">Данное поле не может быть пустым</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <div class="row mt-1 mb-5 pb-5">
+      <div class="col-6 col-sm-5 col-md-4 col-lg-3 col-xl-2 offset-sm-1 offset-md-2 offset-lg-3 offset-xl-4">
+        <button *ngIf="isNew" type="submit" [disabled]="form.invalid || form.disabled"
+                class="btn btn-success btn-block">
+          Add new word
+        </button>
+        <button *ngIf="!isNew" type="submit" class="btn btn-success btn-block"
+                [disabled]="form.invalid || form.disabled">
+          Save
+        </button>
+      </div>
+      <div class="col-6 col-sm-5 col-md-4 col-lg-3 col-xl-2">
+        <button *ngIf="isNew" type="button" class="btn btn-danger btn-block" routerLink="/vocabulary">
+          Return
+        </button>
+        <button *ngIf="!isNew" type="button" class="btn btn-danger btn-block" [disabled]="form.disabled"
+                [attr.data-toggle]="flag ? null : 'modal'" data-target="#modalCenter2" (click)="changeFlag()">
+          Delete
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

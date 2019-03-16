@@ -1,0 +1,8 @@
+@media screen and (max-width: 334px) {
+  .btn {
+    font-size: .84rem;
+  }
+  label.w-100 {
+    font-size: .94rem;
+  }
+}

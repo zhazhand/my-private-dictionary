@@ -1,0 +1,17 @@
+div.alert-warning p {
+  font-size: 1.3rem;
+}
+
+.margBot {
+  margin-bottom: 4rem;
+}
+
+.mw-40 {
+  width: 38px !important;
+  max-width: 38px !important;
+}
+
+.text-bold {
+  font-weight: bolder;
+  font-size: 1.1rem;
+}

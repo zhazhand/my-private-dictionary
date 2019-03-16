@@ -1,0 +1,26 @@
+<p id="theTop"></p>
+<a (click)="onClick()" class="btn btn-info btn-lg mb-5 text-white" id="toTop"> &#923;</a>
+<nav class="bg-primary fixed-top">
+  <ul class="nav nav-tabs justify-content-end">
+    <li class="nav-item" routerLinkActive="active">
+      <a class="nav-link" routerLink="/guide">О приложении</a>
+    </li>
+    <li class="nav-item dropdown mr-5" routerLinkActive="active">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Вход</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" routerLink="/login">Авторизация</a>
+        <a class="dropdown-item" routerLink="/register">Регистрация</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+<div class="afterNav"></div>
+<router-outlet></router-outlet>
+
+
+
+<footer class="page-footer bg-primary fixed-bottom">
+  <div class="footer-copyright text-center py-3">
+    <a href="http://turburo.dp.ua"><img src="assets/images/logo.png" alt="turburo-logo"></a><span class="text-white">© {{now|date:'yyyy'}}</span>
+  </div>
+</footer>

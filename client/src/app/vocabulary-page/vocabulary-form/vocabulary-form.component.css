@@ -1,0 +1,20 @@
+div.alert-info {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+div.alert-info p {
+  font-size: 1.3rem;
+}
+.invalid {
+  background-color: #ffb6c1;
+}
+.text-bold {
+  font-weight: bolder;
+  font-size: 1.1rem;
+}
+
+@media screen and (max-width: 450px) {
+  .table .input-group {
+    min-width: 11rem;
+  }
+}

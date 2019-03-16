@@ -1,0 +1,16 @@
+a.nav-link, a.nav-link:hover {
+  color: #fff;
+}
+.afterNav {
+  margin-top: 6.5rem;
+}
+footer a>img {
+  max-height: 1.8rem;
+}
+#toTop {
+  position: fixed;
+  bottom: 2rem;
+  right:0;
+  display:none;
+  opacity: .4;
+}

@@ -1,0 +1,130 @@
+<app-modal-for-delete
+  [wordToDelete]="form.get('firstForm').value" (deleteThisWord)="deleteWord()">
+</app-modal-for-delete>
+
+<div class="container-fluid">
+  <h2 class="text-center">{{isNew ? 'Add new ' : 'Edit (/delete) '}}word</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <table class="table table-responsive-md">
+      <tr>
+        <th class="text-center"><span class="badge badge-secondary mr-1">1</span>FORM</th>
+        <th class="text-center"><span class="badge badge-secondary mr-1">2</span>FORM</th>
+        <th class="text-center"><span class="badge badge-secondary mr-1">3</span>FORM</th>
+        <th class="text-center">TRANSLATION</th>
+      </tr>
+      <tr>
+        <td class="border-bottom text-center">
+          <div class="input-group">
+            <input
+            class="form-control text-center pl-0 pr-0"
+            placeholder=" first form"
+            formControlName="firstForm"
+            id="first_form"
+            type="text"
+            [ngClass]="{'invalid': form.get('firstForm').invalid && form.get('firstForm').touched}"
+          >
+            <input
+              class="form-control text-center pl-0 pr-0"
+              placeholder=" first-form transcription"
+              formControlName="firstFormTranscription"
+              id="first_form_transcription"
+              type="text"
+              [ngClass]="{'invalid': form.get('firstFormTranscription').invalid && form.get('firstFormTranscription').touched}"
+            >
+          </div>
+          <span class="text-danger helper-text"
+                *ngIf="form.get('firstForm').invalid && form.get('firstForm').touched||form.get('firstFormTranscription').invalid && form.get('firstFormTranscription').touched">
+          <span *ngIf="form.get('firstForm').errors['required']||form.get('firstFormTranscription').errors['required']">Данные поля не могут быть пустыми</span>
+          </span>
+        </td>
+        <td class="border-bottom text-center">
+          <div class="input-group">
+            <input
+              class="form-control text-center pl-0 pr-0"
+              placeholder=" second form"
+              formControlName="secondForm"
+              id="second_form"
+              type="text"
+              [ngClass]="{'invalid': form.get('secondForm').invalid && form.get('secondForm').touched}"
+            >
+            <input
+              class="form-control text-center pl-0 pr-0"
+              placeholder=" second-form transcription"
+              formControlName="secondFormTranscription"
+              id="second_form_transcription"
+              type="text"
+              [ngClass]="{'invalid': form.get('secondFormTranscription').invalid && form.get('secondFormTranscription').touched}"
+            >
+          </div>
+          <span class="text-danger helper-text"
+                *ngIf="form.get('secondForm').invalid && form.get('secondForm').touched||form.get('secondFormTranscription').invalid && form.get('secondFormTranscription').touched">
+          <span *ngIf="form.get('secondForm').errors['required']||form.get('secondFormTranscription').errors['required']">Данные поля не могут быть пустыми</span>
+          </span>
+        </td>
+        <td class="border-bottom text-center">
+          <div class="input-group">
+            <input
+              class="form-control text-center pl-0 pr-0"
+              placeholder=" third form"
+              formControlName="thirdForm"
+              id="third_form"
+              type="text"
+              [ngClass]="{'invalid': form.get('thirdForm').invalid && form.get('thirdForm').touched}"
+            >
+            <input
+              class="form-control text-center pl-0 pr-0"
+              placeholder=" third-form transcription"
+              formControlName="thirdFormTranscription"
+              id="third_form_transcription"
+              type="text"
+              [ngClass]="{'invalid': form.get('thirdFormTranscription').invalid && form.get('thirdFormTranscription').touched}"
+            >
+          </div>
+          <span class="text-danger helper-text"
+                *ngIf="form.get('thirdForm').invalid && form.get('thirdForm').touched||form.get('thirdFormTranscription').invalid && form.get('thirdFormTranscription').touched">
+          <span *ngIf="form.get('thirdForm').errors['required']||form.get('thirdFormTranscription').errors['required']">Данные поля не могут быть пустыми</span>
+          </span>
+        </td>
+        <td class="border-bottom text-center">
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control text-center pl-0 pr-0"
+              placeholder="translation"
+              id="translation"
+              formControlName="translation"
+              [ngClass]="{'invalid': form.get('translation').invalid&&form.get('translation').touched}"
+            >
+          </div>
+          <span class="text-danger helper-text"
+                *ngIf="form.get('translation').invalid&&form.get('translation').touched">
+                          <span
+                            *ngIf="form.get('translation').errors['required']">Данное поле не может быть пустым</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <div class="row mt-1 mb-5 pb-5">
+      <div class="col-6 col-sm-5 col-md-4 col-lg-3 col-xl-2 offset-sm-1 offset-md-2 offset-lg-3 offset-xl-4">
+        <button *ngIf="isNew" type="submit" [disabled]="form.invalid || form.disabled"
+                class="btn btn-success btn-block">
+          Add new word
+        </button>
+        <button *ngIf="!isNew" type="submit" class="btn btn-success btn-block"
+                [disabled]="form.invalid || form.disabled">
+          Save
+        </button>
+      </div>
+      <div class="col-6 col-sm-5 col-md-4 col-lg-3 col-xl-2">
+        <button *ngIf="isNew" type="button" class="btn btn-danger btn-block" routerLink="/vocabulary">
+          Return
+        </button>
+        <button *ngIf="!isNew" type="button" class="btn btn-danger btn-block" [disabled]="form.disabled"
+                [attr.data-toggle]="flag ? null : 'modal'" data-target="#modalCenter2" (click)="changeFlag()">
+          Delete
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,24 @@
+<app-modal (sendDelete)="deleteList($event)"></app-modal>
+
+<app-control-block
+  [blockTitle]="exportTitle"
+  [list]="verbs$"
+  [followTo]="exportFollowTo"
+  [choice]="exportChoice"
+  [abilityPush]="exportAbilityPush"
+  (takeWord)="onSearchWord($event)" (takeType)="changeOrderBy($event)" (delList)="deleteList()">
+</app-control-block>
+
+<app-common-block-output
+  [list]="verbs$"
+  [topic]="exportTopic"
+  [hideLoader]="hideLoader"
+  [choice]="exportChoice"
+  [linkName]="exportlinkName"
+  [search]="searchWord"
+  [paramSearch]="exportParamSearch"
+  [selectedType]="selectedType"
+  (downloadDf)="addDefault()" (changeRemovable)="saveChanges($event)">
+</app-common-block-output>
+
+

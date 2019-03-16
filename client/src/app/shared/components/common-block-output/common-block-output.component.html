@@ -1,0 +1,44 @@
+<div class="container-fluid mt-2">
+  <h2 class="text-center">{{topic | uppercase}}</h2>
+
+  <div *ngIf="list | async as words; else loader">
+    <table class="table table-hover table-bordered margBot" *ngIf="words.length; else empty">
+      <thead class="thead-dark">
+        <tr>
+          <th *ngIf="choice" class="mw-40"></th>
+          <th class="text-center">PHRASE</th>
+          <th class="text-center">TRANSLATION</th>
+        </tr>
+      </thead>
+      <tr *ngFor="let item of words | listFilter : search : paramSearch | appOrderBy : selectedType"
+          [routerLink]="choice ? null : [linkName, item._id]">
+        <td *ngIf="choice" class="mw-40">
+          <input #chkbx type="checkbox" [checked]="item.removable?'checked':null"
+                 (change)="saveChanges(item, chkbx.checked)">
+        </td>
+        <td class="text-center">{{item.name}}</td>
+
+        <td class="text-center">{{item.translation}}</td>
+      </tr>
+    </table>
+    <ng-template #empty>
+      <div class="row justify-content-center mt-5 alert alert-warning" *ngIf="hideLoader;else loader">
+        <div class="col-12">
+          <p class="text-center text-success">
+            В Вашем словаре нет слов. Хотите загрузить дефолтный список?
+          </p>
+        </div>
+        <div class="col-11 col-sm-8 col-md-5 col-lg-4 col-xl-3">
+          <button class="btn btn-outline-success btn-lg btn-block" title="Загрузить дефолтный список"
+                  (click)="addDefault()">
+            Download default list
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+
+  <ng-template #loader>
+    <app-loader></app-loader>
+  </ng-template>
+</div>

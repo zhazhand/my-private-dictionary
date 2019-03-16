@@ -1,0 +1,19 @@
+.card {
+  color:#696969cc;
+  border-bottom-width: 2px!important;
+}
+.card .form-group {
+  border-bottom-width: 2px!important;
+}
+div.border-bottom:hover {
+  border-bottom-color: #17a2b8!important;
+  color: #17a2b8;
+  transition: .9s;
+}
+.error-helper-text {
+  min-height: 40px;
+  font-size: .75rem;
+}
+div.border-bottom.invalid {
+  border-bottom: 2px solid #dc3545!important;
+}
