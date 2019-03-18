@@ -23,6 +23,7 @@
         <td class="border-bottom text-center">
           <div class="input-group">
             <input
+              (input)="onChange(form.get('name').value,word.name)"
               class="form-control text-center pl-0 pr-0"
               placeholder=" new word"
               formControlName="name"
@@ -41,12 +42,14 @@
             <div class="input-group-prepend">
               <span class="input-group-text">[</span>
             </div>
-            <input type="text"
-                   class="form-control text-center pl-0 pr-0"
-                   placeholder="transcription"
-                   id="transcription"
-                   formControlName="transcription"
-                   [ngClass]="{'invalid': form.get('transcription').invalid&&form.get('transcription').touched}"
+            <input
+              (input)="onChange(form.get('transcription').value,word.transcription)"
+              type="text"
+              class="form-control text-center pl-0 pr-0"
+              placeholder="transcription"
+              id="transcription"
+              formControlName="transcription"
+              [ngClass]="{'invalid': form.get('transcription').invalid&&form.get('transcription').touched}"
             >
             <div class="input-group-append">
               <span class="input-group-text">]</span>
@@ -60,6 +63,7 @@
         <td class="border-bottom text-center">
           <div class="input-group">
             <input
+              (input)="onChange(form.get('translation').value,word.translation)"
               type="text"
               class="form-control text-center pl-0 pr-0"
               placeholder="translation"
@@ -82,10 +86,17 @@
                 class="btn btn-success btn-block">
           Add new word
         </button>
-        <button *ngIf="!isNew" type="submit" class="btn btn-success btn-block"
-                [disabled]="form.invalid || form.disabled">
-          Save
-        </button>
+        <div class="btn-group btn-block">
+          <button *ngIf="!isNew" type="submit" class="btn btn-success"
+                  [disabled]="!isChange || form.invalid || form.disabled">
+            Save
+          </button>
+          <button *ngIf="!isNew" type="button"
+                  class="btn btn-success border-divide"
+                  (click)="return()">
+            Return
+          </button>
+        </div>
       </div>
       <div class="col-6 col-sm-5 col-md-4 col-lg-3 col-xl-2">
         <button *ngIf="isNew" type="button" class="btn btn-danger btn-block" routerLink="/vocabulary">

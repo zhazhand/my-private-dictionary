@@ -17,14 +17,16 @@
         <td class="border-bottom text-center">
           <div class="input-group">
             <input
-            class="form-control text-center pl-0 pr-0"
-            placeholder=" first form"
-            formControlName="firstForm"
-            id="first_form"
-            type="text"
-            [ngClass]="{'invalid': form.get('firstForm').invalid && form.get('firstForm').touched}"
-          >
+              (input)="onChange(form.get('firstForm').value,word.firstForm)"
+              class="form-control text-center pl-0 pr-0"
+              placeholder=" first form"
+              formControlName="firstForm"
+              id="first_form"
+              type="text"
+              [ngClass]="{'invalid': form.get('firstForm').invalid && form.get('firstForm').touched}"
+            >
             <input
+              (input)="onChange(form.get('firstFormTranscription').value,word.firstFormTranscription)"
               class="form-control text-center pl-0 pr-0"
               placeholder=" first-form transcription"
               formControlName="firstFormTranscription"
@@ -41,6 +43,7 @@
         <td class="border-bottom text-center">
           <div class="input-group">
             <input
+              (input)="onChange(form.get('secondForm').value,word.secondForm)"
               class="form-control text-center pl-0 pr-0"
               placeholder=" second form"
               formControlName="secondForm"
@@ -49,6 +52,7 @@
               [ngClass]="{'invalid': form.get('secondForm').invalid && form.get('secondForm').touched}"
             >
             <input
+              (input)="onChange(form.get('secondFormTranscription').value,word.secondFormTranscription)"
               class="form-control text-center pl-0 pr-0"
               placeholder=" second-form transcription"
               formControlName="secondFormTranscription"
@@ -59,12 +63,14 @@
           </div>
           <span class="text-danger helper-text"
                 *ngIf="form.get('secondForm').invalid && form.get('secondForm').touched||form.get('secondFormTranscription').invalid && form.get('secondFormTranscription').touched">
-          <span *ngIf="form.get('secondForm').errors['required']||form.get('secondFormTranscription').errors['required']">Данные поля не могут быть пустыми</span>
+          <span
+            *ngIf="form.get('secondForm').errors['required']||form.get('secondFormTranscription').errors['required']">Данные поля не могут быть пустыми</span>
           </span>
         </td>
         <td class="border-bottom text-center">
           <div class="input-group">
             <input
+              (input)="onChange(form.get('thirdForm').value,word.thirdForm)"
               class="form-control text-center pl-0 pr-0"
               placeholder=" third form"
               formControlName="thirdForm"
@@ -73,6 +79,7 @@
               [ngClass]="{'invalid': form.get('thirdForm').invalid && form.get('thirdForm').touched}"
             >
             <input
+              (input)="onChange(form.get('thirdFormTranscription').value,word.thirdFormTranscription)"
               class="form-control text-center pl-0 pr-0"
               placeholder=" third-form transcription"
               formControlName="thirdFormTranscription"
@@ -89,6 +96,7 @@
         <td class="border-bottom text-center">
           <div class="input-group">
             <input
+              (input)="onChange(form.get('translation').value, word.translation)"
               type="text"
               class="form-control text-center pl-0 pr-0"
               placeholder="translation"
@@ -111,10 +119,18 @@
                 class="btn btn-success btn-block">
           Add new word
         </button>
-        <button *ngIf="!isNew" type="submit" class="btn btn-success btn-block"
-                [disabled]="form.invalid || form.disabled">
-          Save
-        </button>
+        <div class="btn-group btn-block">
+          <button *ngIf="!isNew" type="submit" class="btn btn-success"
+                  [disabled]="!isChange || form.invalid || form.disabled">
+            Save
+          </button>
+          <button *ngIf="!isNew" type="button"
+                  class="btn btn-success border-divide"
+                  (click)="return()">
+            Return
+          </button>
+        </div>
+
       </div>
       <div class="col-6 col-sm-5 col-md-4 col-lg-3 col-xl-2">
         <button *ngIf="isNew" type="button" class="btn btn-danger btn-block" routerLink="/vocabulary">

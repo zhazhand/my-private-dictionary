@@ -6,6 +6,10 @@
   font-size: 1.1rem;
 }
 
+.border-divide {
+  border-left: 2px solid #83c192;
+}
+
 @media screen and (max-width: 450px) {
   .table .input-group {
     min-width: 20rem;

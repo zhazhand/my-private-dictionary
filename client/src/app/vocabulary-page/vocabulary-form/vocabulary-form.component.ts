@@ -16,6 +16,7 @@ export class VocabularyFormComponent implements OnInit {
 
   form: FormGroup;
   isNew = true;
+  isChange = false;
   title: string = 'удобный ресурс, на котором можно узнать английское или американское произношение (транскрипцию) слова';
   href: string = 'https://wooordhunt.ru/word/';
   strDefault = 'welcome';
@@ -64,8 +65,7 @@ export class VocabularyFormComponent implements OnInit {
           this.form.enable()
         },
         error => MaterialService.toast(error.error.message)
-      )
-
+      );
 
   }
 
@@ -73,9 +73,10 @@ export class VocabularyFormComponent implements OnInit {
     this.flag = false;
   }
 
-  return(){
-    this.router.navigate(['/vocabulary'])
+  return() {
+    this.router.navigate(['/vocabulary']);
   }
+
   deleteWord() {
 
     this.wordService.delete(this.word._id)
@@ -84,6 +85,14 @@ export class VocabularyFormComponent implements OnInit {
         error => MaterialService.toast(error.error.message),
         () => this.router.navigate(['/vocabulary'])
       )
+  }
+
+  onChange(val1, val2) {
+    if (val1 === val2) {
+      this.isChange = false
+    } else (
+      this.isChange = true
+    )
   }
 
   onSubmit() {

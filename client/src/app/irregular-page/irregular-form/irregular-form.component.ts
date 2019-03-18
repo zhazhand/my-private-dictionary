@@ -16,6 +16,7 @@ export class IrregularFormComponent implements OnInit {
 
   form: FormGroup;
   isNew = true;
+  isChange = false;
   word: Irregular;
 
   constructor(private route: ActivatedRoute,
@@ -80,6 +81,7 @@ export class IrregularFormComponent implements OnInit {
   return(){
     this.router.navigate(['/irregular'])
   }
+
   deleteWord() {
 
     this.wordService.delete(this.word._id)
@@ -126,6 +128,14 @@ export class IrregularFormComponent implements OnInit {
         this.form.enable()
       },
       () => this.router.navigate(['/irregular'])
+    )
+  }
+
+  onChange(val1, val2) {
+    if (val1 === val2) {
+      this.isChange = false
+    } else (
+      this.isChange = true
     )
   }
 
