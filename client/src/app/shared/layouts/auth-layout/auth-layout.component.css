@@ -14,3 +14,6 @@ footer a>img {
   display:none;
   opacity: .4;
 }
+#theTop {
+  margin: 0;
+}

@@ -19,6 +19,9 @@ li.nav-item:hover {
 .portrait {
   display:none
 }
+#theTop {
+  margin: 0;
+}
 #toTop {
   position: fixed;
   color:#fff;
