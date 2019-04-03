@@ -12,8 +12,11 @@ export class CommonFormComponent {
   @Input() prevLink;
 
   flag: boolean = true;
-
-
+  isChange = false;name:string;
+  //name =this.form.value.name;
+ngAfterViewInit(){
+  this.name =this.form.value.name;console.log("this.form.value.name",this.form.value)
+}
   changeFlag() {
     this.flag = false;
   }
@@ -26,6 +29,14 @@ export class CommonFormComponent {
   @Output() onSaveWord = new EventEmitter();
   onSubmit() {
     this.onSaveWord.emit();
+  }
+
+  onChange(val1, val2) {console.log("val1:",val1, "val2:",val2);console.log("555:",this.form.value.name)
+    if (val1 === val2) {
+      this.isChange = false
+    } else (
+      this.isChange = true
+    )
   }
 
 }
