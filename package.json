@@ -4,7 +4,7 @@
   "description": "fullstack app with angular and express",
   "main": "index.js",
   "engines": {
-    "node": "11.6.0",
+    "node": "12.14",
     "npm": "6.5.0"
   },
   "scripts": {
